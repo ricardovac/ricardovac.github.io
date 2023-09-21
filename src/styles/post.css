@@ -1,0 +1,141 @@
+.post p {
+  @apply leading-7;
+}
+
+.post code {
+  @apply rounded-sm bg-neutral-800 px-1 py-[2px] text-orange-500;
+}
+
+.post h2 {
+  @apply mt-6 text-3xl text-neutral-100;
+}
+
+.post h3 {
+  @apply mt-4 text-xl text-neutral-100;
+}
+
+.post code {
+  @apply rounded-sm bg-neutral-800 px-1 py-[2px] text-red-500;
+}
+
+.post a {
+  @apply text-neutral-100 underline;
+}
+
+.post ul {
+  @apply list-disc;
+}
+
+.post blockquote {
+  @apply flex flex-row gap-2 before:block before:h-auto before:w-1 before:max-w-[1px] before:bg-red-400 before:content-[''];
+}
+
+.post pre {
+  @apply p-4;
+}
+
+.post pre > code {
+  @apply bg-transparent;
+}
+
+/* Hide the scrollbar for all the browsers */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.animation-delay-1 {
+	animation-delay: 200ms;
+}
+.animation-delay-2 {
+	animation-delay: 500ms;
+}
+.animation-delay-3 {
+	animation-delay: 700ms;
+}
+.animation-delay-4 {
+	animation-delay: 1000ms;
+}
+.animation-delay-5 {
+	animation-delay: 1200ms;
+}
+
+.fade-in {
+	animation: fadeIn 1s forwards;
+	opacity: 0;
+}
+
+.bloom {
+	will-change: opacity;
+	opacity: 0;
+	will-change: filter opacity;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+	animation-iteration-count: 1;
+	animation-direction: forwards;
+	&.burst {
+		animation-name: bloomBurst;
+		animation-duration: 1s;
+	}
+	&.subtle {
+		animation-name: bloomSubtle;
+		animation-duration: 3s;
+	}
+}
+
+@keyframes bloomBurst {
+	from {
+		opacity: 0;
+	}
+	40% {
+		opacity: 1;
+	}
+	to {
+		opacity: 0.8;
+	}
+}
+@keyframes bloomSubtle {
+	from {
+		opacity: 0;
+	}
+	40% {
+		opacity: 0.8;
+	}
+	to {
+		opacity: 0.6;
+	}
+}
