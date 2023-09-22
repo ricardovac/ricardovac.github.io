@@ -51,7 +51,7 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
     <article class="flex flex-col gap-8">
       <header class="flex w-full flex-row justify-between gap-2">
         <h3 class="text-lg text-neutral-100">Últimos posts</h3>
-        <Link href="/posts" label="See all posts" isUnderline target="_self" />
+        <Link href="/posts" label="Ver posts" isUnderline target="_self" />
       </header>
       {posts.length === 0 && <p>Soon, stay connected 👀...</p>}
 
@@ -75,10 +75,10 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
     <article class="flex flex-col gap-8">
       <header class="flex w-full flex-row justify-between gap-2">
         <h3 class="text-lg text-neutral-100">
-          Postagens selecionadas ({projects.length})
+          Projetos selecionados ({projects.length})
         </h3>
       </header>
-      {projects.length === 0 && <p>Oops, I must work^^^^^</p>}
+      {projects.length === 0 && <p>Nenhum post encontrado...</p>}
 
       <section class="flex flex-col gap-4">
         {
@@ -90,7 +90,7 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 
     <article class="flex flex-col gap-8">
       <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">Get in touch</h3>
+        <h3 class="text-lg text-neutral-100">Entre em contato</h3>
       </header>
       <p>
         Me mande um email em <Link
