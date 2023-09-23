@@ -1,7 +1,7 @@
 ---
 title: "Sobre Mim"
 publishedAt: 2023-09-21
-description: "Um pouco sobre a minha pessoa"
+description: "Conheça um pouco mais sobre mim e minhas habilidades."
 slug: "sobre-mim"
 isPublish: true
 ---
