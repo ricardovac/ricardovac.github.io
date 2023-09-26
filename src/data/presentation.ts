@@ -16,7 +16,7 @@ const presentation: Presentation = {
   title: "Olá, me chamo Ricardo 👋",
   // profile: "/profile.webp",
   description:
-    "sou um estudante de *Ciência da Computação* apaixonado por tecnologia. Atualmente eu estou trabalhando em aprimorar meus conhecimentos em *Fullstack Developing*.",
+    "Sou um estudante de Ciência da Computação 📚, desenvolvedor full-stack em **constante aprendizado**. Eu ❤️ resolver problemas e aplicações de grande escala.",
   socials: [
     {
       label: "Linkedin",

@@ -3,6 +3,7 @@ import removeTrailingSlash from "@/utils/removeTrailingSlash";
 import presentation from "@/data/presentation";
 import SocialLinks from "./SocialLinks.astro";
 import ThemeIcon from "./ThemeIcon.astro";
+import navigation from "@/data/navigation";
 
 const pathname = removeTrailingSlash(Astro.url.pathname);
 ---
@@ -18,25 +19,24 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
   </div>
   <nav role="navigation" class="flex justify-between">
     <ul role="list" class="flex flex-row gap-2">
-      <li>
-        <a
-          href="/"
-          class:list={{
-            ["dark:hover:text-neutral-100 hover:text-neutral-600"]: true,
-            ["dark:text-neutral-100"]: pathname === "/",
-          }}>Início</a
-        >
-      </li>
-      <li>/</li>
-      <li>
-        <a
-          href="/posts"
-          class:list={{
-            ["dark:hover:text-neutral-100 hover:text-neutral-600"]: true,
-            ["dark:text-neutral-100"]: pathname === "/posts",
-          }}>Posts</a
-        >
-      </li>
+      {
+        navigation.map((item, i, { length }) => (
+          <>
+            <li>
+              <a
+                href={item.href}
+                class:list={{
+                  ["dark:hover:text-neutral-100 hover:text-neutral-600"]: true,
+                  ["dark:text-neutral-100"]: pathname === item.href,
+                }}
+              >
+                {item.label}
+              </a>
+            </li>
+            {length - 1 !== i && <li>/</li>}
+          </>
+        ))
+      }
     </ul>
 
     <SocialLinks />
