@@ -4,7 +4,6 @@ import sitemap from "@astrojs/sitemap";
 import robotsTxt from "astro-robots-txt";
 import { SITE_URL } from "./src/data/config";
 
-
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), sitemap(), robotsTxt()],
@@ -14,7 +13,7 @@ export default defineConfig({
     syntaxHighlight: "shiki",
     shikiConfig: {
       theme: "nord",
-      wrap: false
-    }
-  }
+      wrap: false,
+    },
+  },
 });

@@ -1,14 +1,13 @@
 ---
 import Header from "../components/Header.astro";
-import BlurCircle from "@/components/shared/BlurCircle.astro";
+import BlurCircle from "@/components/BlurCircle.astro";
 import theme from "@/data/theme";
-import SEOTags from "@/components/seo/SEOTags.astro";
+import SEO from "@/components/SEOTags.astro";
 import type { HeadTags } from "@/utils/types/HeadTags";
 
 import "@fontsource/open-sans";
 import "@/styles/tailwind.css";
 import "@/styles/post.css";
-import navigation from "@/data/navigation";
 
 export type Props = HeadTags;
 
@@ -17,7 +16,7 @@ const headTags = Astro.props;
 
 <!DOCTYPE html>
 <html lang="en">
-  <SEOTags {...headTags} />
+  <SEO {...headTags} />
 
   <body
     class="mx-auto flex min-h-screen max-w-[872px] flex-col gap-9 bg-neutral-100 px-10 py-8 text-sm text-neutral-700 transition-colors dark:bg-neutral-950 dark:text-neutral-400 md:gap-20 md:py-16"
@@ -27,9 +26,18 @@ const headTags = Astro.props;
     <BlurCircle position="bottom" color={theme.colors.blur.bottom} />
     <slot />
     <style is:global>
+      * {
+        box-sizing: border-box;
+      }
       html {
-        font-family: "Helvetica";
+        font-family: "Hevetica Neue";
         scroll-behavior: smooth;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
       }
     </style>
   </body>

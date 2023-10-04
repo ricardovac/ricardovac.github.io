@@ -9,12 +9,12 @@ const navigation = [
     href: "/",
   },
   {
-    label: "Projetos",
-    href: "#projects",
-  },
-  {
     label: "Posts",
     href: "/posts",
+  },
+  {
+    label: "Projetos",
+    href: "#projects",
   },
 ];
 

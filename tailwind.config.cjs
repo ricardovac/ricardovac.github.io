@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Helvetica", ...defaultTheme.fontFamily.sans],
+        sans: ["Hevetica Neue", ...defaultTheme.fontFamily.sans],
       },
     },
   },
