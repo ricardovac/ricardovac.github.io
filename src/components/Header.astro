@@ -12,8 +12,10 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
   <div class="flex justify-between">
     <a
       href={`mailto:${presentation.mail}`}
-      class="text-xl hover:text-neutral-600 dark:hover:text-neutral-100"
-      >{presentation.mail}</a
+      class="font-display text-xl hover:text-neutral-600 dark:hover:text-neutral-100"
+    >
+      <span class="sr-only">Email</span>
+      {presentation.mail}</a
     >
     <ThemeIcon />
   </div>
@@ -30,6 +32,7 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
                   ["dark:text-neutral-100"]: pathname === item.href,
                 }}
               >
+                <span class="sr-only">{item.label}</span>
                 {item.label}
               </a>
             </li>
@@ -42,5 +45,5 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
     <SocialLinks />
   </nav>
 
-  <hr class="w-full opacity-30" />
+  <hr class="w-full border-zinc-600 opacity-30 dark:border-zinc-500" />
 </header>

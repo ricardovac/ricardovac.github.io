@@ -1,9 +1,7 @@
 ---
 import Header from "../components/Header.astro";
-import BlurCircle from "@/components/BlurCircle.astro";
-import theme from "@/data/theme";
-import SEO from "@/components/SEOTags.astro";
 import type { HeadTags } from "@/utils/types/HeadTags";
+import "sal.js/dist/sal.css";
 
 import "@fontsource/open-sans";
 import "@/styles/tailwind.css";
@@ -11,26 +9,66 @@ import "@/styles/post.css";
 
 export type Props = HeadTags;
 
-const headTags = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-  <SEO {...headTags} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-Type" content="text/html; utf-8" />
+    <meta http-equiv="Pragma" content="cache" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta http-equiv="content-Language" content="en" />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="portfolio, blog, web development, web design, frontend, backend, javascript, typescript, react, nextjs, tailwindcss, css, html, web, web developer"
+    />
+    <meta name="author" content="Ricardo Vinicius" />
+    <meta name="publisher" content="Ricardo Vinicius" />
+    <meta name="audience" content="all" />
+    <meta name="page-topic" content="service" />
+    <meta name="page-type" content="private homepage" />
+    <meta name="copyright" content="Ricardo Vinicius © 2022" />
+    <meta http-equiv="Reply-to" content="ricardoviicius@gmail.com" />
+    <meta name="revisit-after" content="2 days" />
+    <meta name="expires" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#171717" />
+    <meta name="msapplication-TileColor" content="#171717" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <slot name="header" />
+
+    <title>{title}</title>
+  </head>
 
   <body
-    class="mx-auto flex min-h-screen max-w-[872px] flex-col gap-9 bg-neutral-100 px-10 py-8 text-sm text-neutral-700 transition-colors dark:bg-neutral-950 dark:text-neutral-400 md:gap-20 md:py-16"
+    class="mx-auto flex min-h-screen max-w-[872px] flex-col gap-9 bg-[#f8e9e2] px-10 py-8 text-sm text-neutral-700 transition-colors dark:bg-[#151519] dark:text-neutral-400 md:gap-20 md:py-16"
   >
     <Header />
-    <BlurCircle position="top" color={theme.colors.blur.top} />
-    <BlurCircle position="bottom" color={theme.colors.blur.bottom} />
     <slot />
     <style is:global>
       * {
         box-sizing: border-box;
       }
+      @font-face {
+        font-family: "General Sans";
+        src: url("/fonts/general-sans/GeneralSans.woff2") format("woff2"),
+          url("/fonts/general-sans/GeneralSans.woff") format("woff"),
+          url("/fonts/general-sans/GeneralSans.ttf") format("truetype");
+        font-weight: 600;
+        font-display: swap;
+        font-style: normal;
+      }
       html {
-        font-family: "Hevetica Neue";
+        font-family: GeneralSans, sans-serif;
         scroll-behavior: smooth;
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
@@ -41,4 +79,9 @@ const headTags = Astro.props;
       }
     </style>
   </body>
+  <script>
+    const sal = (await import("sal.js")).default;
+
+    sal();
+  </script>
 </html>

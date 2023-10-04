@@ -8,11 +8,17 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 });
 ---
 
-<Layout title="Template - All Posts">
+<Layout title="Todos os posts">
   <main class="flex flex-col gap-20">
-    <h1 class="text-2xl text-neutral-100">Posts</h1>
+    <h1 class="font-display text-2xl text-neutral-800 dark:text-neutral-100">
+      Posts
+    </h1>
 
-    <article class="flex flex-col gap-4">
+    <article
+      class="flex flex-col gap-4"
+      data-sal="slide-up"
+      data-sal-duration="700"
+    >
       {
         posts.map((post) => (
           <a
