@@ -1,87 +1,83 @@
 ---
-import Header from "../components/Header.astro";
-import type { HeadTags } from "@/utils/types/HeadTags";
-import "sal.js/dist/sal.css";
-
-import "@fontsource/open-sans";
-import "@/styles/tailwind.css";
+import "@/styles/global.css";
 import "@/styles/post.css";
+import type { HeadTags } from "@/utils/types/HeadTags";
 
 export type Props = HeadTags;
 
 const { title, description } = Astro.props;
 ---
 
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="content-Type" content="text/html; utf-8" />
-    <meta http-equiv="Pragma" content="cache" />
     <meta name="robots" content="INDEX,FOLLOW" />
-    <meta http-equiv="content-Language" content="en" />
     <meta name="description" content={description} />
     <meta
       name="keywords"
-      content="portfolio, blog, web development, web design, frontend, backend, javascript, typescript, react, nextjs, tailwindcss, css, html, web, web developer"
+      content="portfolio, ricardo clemente, full stack, typescript, go, ai, claude code, nestjs, react, vue, nuxt, next, engenheiro de software"
     />
-    <meta name="author" content="Ricardo Vinicius" />
-    <meta name="publisher" content="Ricardo Vinicius" />
-    <meta name="audience" content="all" />
-    <meta name="page-topic" content="service" />
-    <meta name="page-type" content="private homepage" />
-    <meta name="copyright" content="Ricardo Vinicius © 2022" />
-    <meta http-equiv="Reply-to" content="ricardoviicius@gmail.com" />
-    <meta name="revisit-after" content="2 days" />
-    <meta name="expires" content="" />
+    <meta name="author" content="Ricardo Vinicius Amaral Clemente" />
+    <meta name="theme-color" content="#0b1014" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#171717" />
-    <meta name="msapplication-TileColor" content="#171717" />
-    <meta name="theme-color" content="#ffffff" />
 
-    <slot name="header" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
 
     <title>{title}</title>
   </head>
+  <body>
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem("theme");
+          if (stored === "light" || stored === "dark") {
+            document.documentElement.dataset.theme = stored;
+          } else {
+            document.documentElement.dataset.theme = "dark";
+          }
+        } catch (_) {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
 
-  <body
-    class="mx-auto flex min-h-screen max-w-[872px] flex-col gap-9 bg-[#f8e9e2] px-10 py-8 text-sm text-neutral-700 transition-colors dark:bg-[#151519] dark:text-neutral-400 md:gap-20 md:py-16"
-  >
-    <Header />
     <slot />
-    <style is:global>
-      * {
-        box-sizing: border-box;
-      }
-      @font-face {
-        font-family: "General Sans";
-        src: url("/fonts/general-sans/GeneralSans.woff2") format("woff2"),
-          url("/fonts/general-sans/GeneralSans.woff") format("woff"),
-          url("/fonts/general-sans/GeneralSans.ttf") format("truetype");
-        font-weight: 600;
-        font-display: swap;
-        font-style: normal;
-      }
-      html {
-        font-family: GeneralSans, sans-serif;
-        scroll-behavior: smooth;
-        -ms-text-size-adjust: 100%;
-        -webkit-text-size-adjust: 100%;
-      }
-      body {
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-font-smoothing: antialiased;
-      }
-    </style>
-  </body>
-  <script>
-    const sal = (await import("sal.js")).default;
 
-    sal();
-  </script>
+    <script>
+      const observe = () => {
+        const els = document.querySelectorAll(".fade-in");
+        if (!("IntersectionObserver" in window)) {
+          els.forEach((el) => el.classList.add("visible"));
+          return;
+        }
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        els.forEach((el) => obs.observe(el));
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", observe);
+      } else {
+        observe();
+      }
+    </script>
+  </body>
 </html>

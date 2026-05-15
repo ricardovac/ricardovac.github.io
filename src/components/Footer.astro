@@ -1,0 +1,38 @@
+---
+import portfolio from "@/data/portfolio";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <span class="footer__copy">© {year} {portfolio.name}</span>
+    <span class="footer__made">Feito com TypeScript, Go &amp; ☕</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 0;
+  }
+  .footer__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer__copy,
+  .footer__made {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+  }
+  @media (max-width: 600px) {
+    .footer__inner {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+</style>

@@ -1,129 +1,95 @@
-.post p {
-  @apply leading-7;
+.post {
+  max-width: 720px;
+  margin: 0 auto;
 }
 
-.post code {
-  @apply rounded-sm bg-neutral-800 px-1 py-[2px] text-orange-500;
+.post p {
+  line-height: 1.75;
+  margin-bottom: 1em;
+  color: var(--text);
+}
+
+.post h1,
+.post h2,
+.post h3,
+.post h4 {
+  color: var(--text);
+  letter-spacing: -0.01em;
 }
 
 .post h2 {
-  @apply mt-6 text-3xl text-neutral-100;
+  margin-top: 2rem;
+  font-size: 1.875rem;
 }
 
 .post h3 {
-  @apply mt-4 text-xl text-neutral-100;
-}
-
-.post code {
-  @apply rounded-sm bg-neutral-800 px-1 py-[2px] text-red-500;
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .post a {
-  @apply text-neutral-100 underline;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.post a:hover {
+  color: var(--text);
+}
+
+.post ul,
+.post ol {
+  padding-left: 1.4rem;
+  margin-bottom: 1em;
 }
 
 .post ul {
-  @apply list-disc;
+  list-style: disc;
 }
 
-.post blockquote {
-  @apply flex flex-row gap-2 before:block before:h-auto before:w-1 before:max-w-[1px] before:bg-red-400 before:content-[''];
+.post ol {
+  list-style: decimal;
+}
+
+.post li {
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+
+.post code {
+  background: var(--bg-card);
+  color: var(--accent);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.875em;
 }
 
 .post pre {
-  @apply p-4;
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  background: var(--bg-card);
+  margin-bottom: 1em;
 }
 
-.post pre > code {
-  @apply bg-transparent;
+.post pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: 0.875em;
 }
 
-@keyframes fadeInDown {
-	from {
-		opacity: 0;
-		transform: translateY(-20px);
-	}
-	to {
-		transform: translateY(0px);
-		opacity: 1;
-	}
-}
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
+.post blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: var(--text-muted);
+  font-style: italic;
 }
 
-@keyframes fadeInUp {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-
-.animation-delay-1 {
-	animation-delay: 200ms;
-}
-.animation-delay-2 {
-	animation-delay: 500ms;
-}
-.animation-delay-3 {
-	animation-delay: 700ms;
-}
-.animation-delay-4 {
-	animation-delay: 1000ms;
-}
-.animation-delay-5 {
-	animation-delay: 1200ms;
-}
-
-.fade-in {
-	animation: fadeIn 1s forwards;
-	opacity: 0;
-}
-
-.bloom {
-	will-change: opacity;
-	opacity: 0;
-	will-change: filter opacity;
-	animation-timing-function: ease-in-out;
-	animation-fill-mode: forwards;
-	animation-iteration-count: 1;
-	animation-direction: forwards;
-	&.burst {
-		animation-name: bloomBurst;
-		animation-duration: 1s;
-	}
-	&.subtle {
-		animation-name: bloomSubtle;
-		animation-duration: 3s;
-	}
-}
-
-@keyframes bloomBurst {
-	from {
-		opacity: 0;
-	}
-	40% {
-		opacity: 1;
-	}
-	to {
-		opacity: 0.8;
-	}
-}
-@keyframes bloomSubtle {
-	from {
-		opacity: 0;
-	}
-	40% {
-		opacity: 0.8;
-	}
-	to {
-		opacity: 0.6;
-	}
+::selection {
+  background: var(--accent-bg);
+  color: var(--text);
 }

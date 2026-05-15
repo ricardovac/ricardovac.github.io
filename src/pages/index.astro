@@ -1,112 +1,28 @@
 ---
-import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
-
 import Layout from "@/layouts/Layout.astro";
-import SocialLinks from "@/components/SocialLinks.astro";
-import PostCard from "@/components/PostCard.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
-import Link from "@/components/Link.astro";
-import convertAsteriskToStrongTag from "@/utils/convertAsteriskToStrongTag";
-
-import presentation from "@/data/presentation";
-import projects from "@/data/projects";
+import Nav from "@/components/Nav.astro";
+import Hero from "@/components/Hero.astro";
+import Experience from "@/components/Experience.astro";
+import Projects from "@/components/Projects.astro";
+import Skills from "@/components/Skills.astro";
+import Contact from "@/components/Contact.astro";
+import Footer from "@/components/Footer.astro";
+import portfolio from "@/data/portfolio";
 
 const SEO = {
-  title: "Portfolio | Ricardo",
-  description: "Meu portfolio pessoal, onde compartilho meus projetos e posts.",
+  title: `${portfolio.name} — Portfolio`,
+  description: portfolio.summary,
 };
-
-const posts = (await getCollection("posts")).sort(function (first, second) {
-  return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
-});
 ---
 
 <Layout title={SEO.title} description={SEO.description}>
-  <main class="flex flex-col gap-20">
-    <article
-      class="flex flex-col gap-8 md:flex-row-reverse md:justify-end md:gap-12"
-    >
-      {
-        presentation.profile && (
-          <Image
-            src={presentation.profile}
-            class="w-1/4 self-center rounded-full"
-            alt="Your Profile"
-            width="200"
-            height="200"
-          />
-        )
-      }
-
-      <div class="flex flex-col gap-8">
-        <h1 class="font-display text-4xl text-zinc-800 dark:text-neutral-100">
-          {presentation.title}
-        </h1>
-
-        <h2
-          class="w-auto max-w-[40ch] text-lg leading-7"
-          set:html={convertAsteriskToStrongTag(presentation.description)}
-        />
-      </div>
-    </article>
-
-    <article class="flex flex-col gap-8">
-      <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="font-display text-lg text-zinc-800 dark:text-neutral-100">
-          Últimos posts
-        </h3>
-        <Link href="/posts" label="Ver posts" isUnderline target="_self" />
-      </header>
-      {posts.length === 0 && <p>Soon, stay connected 👀...</p>}
-
-      <section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
-        {
-          posts.length !== 0 &&
-            posts
-              .slice(0, 2)
-              .map((post) => (
-                <PostCard
-                  publishedAt={post.data.publishedAt}
-                  title={post.data.title}
-                  description={post.data.description}
-                  slug={post.slug}
-                />
-              ))
-        }
-      </section>
-    </article>
-
-    <article class="flex flex-col gap-8">
-      <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="font-display text-lg text-zinc-800 dark:text-neutral-100">
-          Projetos selecionados ({projects.length})
-        </h3>
-      </header>
-      {projects.length === 0 && <p>Nenhum post encontrado...</p>}
-
-      <section class="flex flex-col gap-4">
-        {
-          projects.length !== 0 &&
-            projects.map((project) => <ProjectCard {...project} />)
-        }
-      </section>
-    </article>
-
-    <article class="flex flex-col gap-8">
-      <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="font-display text-lg text-zinc-800 dark:text-neutral-100">
-          Entre em contato
-        </h3>
-      </header>
-      <p>
-        Me mande um email em <Link
-          href={`mailto:${presentation.mail}`}
-          label={presentation.mail}
-        /> ou me encontre em qualquer uma das redes sociais abaixo.
-      </p>
-
-      <SocialLinks />
-    </article>
+  <Nav />
+  <main>
+    <Hero />
+    <Experience />
+    <Projects />
+    <Skills />
+    <Contact />
   </main>
+  <Footer />
 </Layout>
