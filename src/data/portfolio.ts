@@ -87,6 +87,18 @@ const portfolio: Portfolio = {
   ],
   experience: [
     {
+      id: "solutis",
+      company: "Solutis Tecnologias",
+      role: "Desenvolvedor de Software",
+      period: "Set 2024 – presente",
+      type: "Consultoria",
+      highlights: [
+        "Desenvolvimento de sistemas web em Vue.js e Laravel, com APIs REST, autenticação, bancos relacionais e Clean Architecture.",
+        "Refatoração de módulos legados em Java/Spring e migração incremental de telas Angular, reduzindo tempo de manutenção em ~30% via padronização e ampliação de testes.",
+      ],
+      tech: ["Vue.js", "Laravel", "Java", "Spring", "Angular", "REST", "Docker", "Git"],
+    },
+    {
       id: "versary",
       company: "Versary",
       role: "Engenheiro Fundador",
@@ -98,18 +110,6 @@ const portfolio: Portfolio = {
         "Fluxo de desenvolvimento assistido por IA com agents especializados por camada (backend e frontend) e slash commands cobrindo o ciclo completo da task — redução de ~40% no tempo de entrega.",
       ],
       tech: ["Vue 3", "Nuxt 3", "Go", "gqlgen", "GraphQL", "Tailwind CSS", "Docker", "Bun"],
-    },
-    {
-      id: "solutis",
-      company: "Solutis Tecnologias",
-      role: "Desenvolvedor de Software",
-      period: "Set 2024 – presente",
-      type: "Consultoria",
-      highlights: [
-        "Desenvolvimento de sistemas web em Vue.js e Laravel, com APIs REST, autenticação, bancos relacionais e Clean Architecture.",
-        "Refatoração de módulos legados em Java/Spring e migração incremental de telas Angular, reduzindo tempo de manutenção em ~30% via padronização e ampliação de testes.",
-      ],
-      tech: ["Vue.js", "Laravel", "Java", "Spring", "Angular", "REST", "Docker", "Git"],
     },
     {
       id: "hrminds",
