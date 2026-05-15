@@ -14,9 +14,9 @@
   --border: oklch(0.22 0.01 240 / 0.5);
   --text: oklch(0.94 0.008 80);
   --text-muted: oklch(0.52 0.01 240);
-  --accent: oklch(0.72 0.17 185);
-  --accent-dim: oklch(0.5 0.12 185);
-  --accent-bg: oklch(0.35 0.08 185 / 0.15);
+  --accent: #9295fe;
+  --accent-dim: oklch(0.6 0.13 277);
+  --accent-bg: oklch(0.5 0.13 277 / 0.18);
   --accent-on: oklch(0.08 0.015 240);
   --radius: 12px;
   --font: "Space Grotesk", system-ui, sans-serif;
@@ -152,7 +152,7 @@ body::after {
 .btn--primary:hover {
   opacity: 0.88;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px oklch(0.5 0.12 185 / 0.35);
+  box-shadow: 0 8px 24px oklch(0.5 0.13 277 / 0.4);
 }
 
 .btn--ghost {
