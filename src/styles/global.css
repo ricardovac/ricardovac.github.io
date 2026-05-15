@@ -1,0 +1,200 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: oklch(0.08 0.015 240);
+  --bg-surface: oklch(0.11 0.012 240);
+  --bg-card: oklch(0.14 0.01 240);
+  --bg-card-hover: oklch(0.17 0.01 240 / 0.5);
+  --border: oklch(0.22 0.01 240 / 0.5);
+  --text: oklch(0.94 0.008 80);
+  --text-muted: oklch(0.52 0.01 240);
+  --accent: oklch(0.72 0.17 185);
+  --accent-dim: oklch(0.5 0.12 185);
+  --accent-bg: oklch(0.35 0.08 185 / 0.15);
+  --accent-on: oklch(0.08 0.015 240);
+  --radius: 12px;
+  --font: "Space Grotesk", system-ui, sans-serif;
+  --mono: "DM Mono", ui-monospace, monospace;
+}
+
+:root[data-theme="light"] {
+  --bg: oklch(0.97 0.005 80);
+  --bg-surface: oklch(0.94 0.005 80);
+  --bg-card: oklch(0.99 0.003 80);
+  --bg-card-hover: oklch(0.92 0.005 80 / 0.6);
+  --border: oklch(0.85 0.005 80 / 0.8);
+  --text: oklch(0.15 0.01 240);
+  --text-muted: oklch(0.45 0.01 240);
+  --accent-on: oklch(0.97 0.005 80);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font);
+  color: inherit;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.section {
+  padding: 110px 0;
+}
+
+.section--alt {
+  background: var(--bg-surface);
+}
+
+.section-head {
+  margin-bottom: 52px;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.section-label__line {
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.section-label__text {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section-title {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 10px;
+  transition: opacity 0.2s, transform 0.2s, border-color 0.2s, color 0.2s, background 0.2s,
+    box-shadow 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-on);
+}
+
+.btn--primary:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px oklch(0.5 0.12 185 / 0.35);
+}
+
+.btn--ghost {
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn--ghost:hover {
+  border-color: var(--accent-dim);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.btn--sm {
+  font-size: 13px;
+  padding: 9px 18px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: var(--mono);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.tag--more {
+  color: var(--accent);
+  border-color: var(--accent-bg);
+  background: var(--accent-bg);
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 20px;
+  }
+  .section {
+    padding: 80px 0;
+  }
+}

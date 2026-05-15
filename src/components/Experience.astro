@@ -1,0 +1,257 @@
+---
+import portfolio from "@/data/portfolio";
+import SectionLabel from "./SectionLabel.astro";
+
+const d = portfolio;
+---
+
+<section id="experience" class="section">
+  <div class="container">
+    <div class="fade-in section-head">
+      <SectionLabel text="Experiência" />
+      <h2 class="section-title">Onde trabalhei</h2>
+    </div>
+
+    <div class="exp-list">
+      {
+        d.experience.map((job, i) => (
+          <div
+            class:list={["exp-card", "fade-in", { "exp-card--open": i === 0 }]}
+            style={`transition-delay: ${i * 80}ms`}
+            data-exp-card
+          >
+            <button class="exp-card__header" type="button" data-exp-toggle>
+              <div class="exp-card__header-left">
+                <span class="exp-card__type">{job.type}</span>
+                <h3 class="exp-card__company">{job.company}</h3>
+                <p class="exp-card__role">{job.role}</p>
+              </div>
+              <div class="exp-card__header-right">
+                <span class="exp-card__period">{job.period}</span>
+                <span class="exp-card__chevron" data-exp-chevron>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path
+                      d="M4 6l4 4 4-4"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </button>
+
+            <div class="exp-card__body">
+              <ul class="exp-card__highlights">
+                {job.highlights.map((h) => (
+                  <li class="exp-card__highlight">
+                    <span class="exp-card__bullet" />
+                    {h}
+                  </li>
+                ))}
+              </ul>
+              <div class="exp-card__tags">
+                {job.tech.map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="education-row fade-in">
+      <div class="edu-card">
+        <span class="edu-card__icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+        </span>
+        <div class="edu-card__body">
+          <p class="edu-card__degree">{d.education.degree}</p>
+          <p class="edu-card__institution">{d.education.institution}</p>
+        </div>
+        <span class="edu-card__period">{d.education.period}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 48px;
+  }
+  .exp-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .exp-card--open {
+    border-color: oklch(0.28 0.02 185);
+  }
+  .exp-card__header {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px 28px;
+    text-align: left;
+    transition: background 0.15s;
+  }
+  .exp-card__header:hover {
+    background: var(--bg-card-hover);
+  }
+  .exp-card__type {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .exp-card__company {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .exp-card__role {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .exp-card__period {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .exp-card__header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    padding-top: 4px;
+  }
+  .exp-card__chevron {
+    color: var(--text-muted);
+    transition: transform 0.3s;
+    display: flex;
+  }
+  .exp-card--open .exp-card__chevron {
+    transform: rotate(180deg);
+  }
+  .exp-card__body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .exp-card--open .exp-card__body {
+    max-height: 600px;
+  }
+  .exp-card__highlights {
+    list-style: none;
+    padding: 0 28px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .exp-card__highlight {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    align-items: flex-start;
+  }
+  .exp-card__bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+  .exp-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0 28px 24px;
+  }
+
+  .edu-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    flex-wrap: wrap;
+  }
+  .edu-card__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    background: var(--accent-bg);
+    border: 1px solid oklch(0.35 0.08 185 / 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .edu-card__body {
+    flex: 1;
+    min-width: 180px;
+  }
+  .edu-card__degree {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .edu-card__institution {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .edu-card__period {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    .exp-card__header {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-exp-card]").forEach((card) => {
+    const button = card.querySelector<HTMLButtonElement>("[data-exp-toggle]");
+    button?.addEventListener("click", () => {
+      card.classList.toggle("exp-card--open");
+    });
+  });
+</script>

@@ -1,13 +1,15 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
+import Nav from "@/components/Nav.astro";
+import Footer from "@/components/Footer.astro";
 import formatDate from "@/utils/formatDate";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
 
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
@@ -17,18 +19,60 @@ type Props = {
 };
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 ---
 
 <Layout title={post.data.title} description={post.data.description}>
-  <main class="post mx-auto flex w-full max-w-prose flex-col gap-4">
-    <header role="presentation">
-      <h1 class="text-md">
-        {post.data.title} - {formatDate(post.data.publishedAt)}
-      </h1>
-      <p class="italic">{post.data.description}</p>
-    </header>
+  <Nav />
+  <main class="section post-page">
+    <article class="container post">
+      <header class="post-header">
+        <a href="/posts" class="post-back">← Posts</a>
+        <h1 class="post-title">{post.data.title}</h1>
+        <p class="post-meta">{formatDate(post.data.publishedAt)}</p>
+        <p class="post-description">{post.data.description}</p>
+      </header>
 
-    <Content />
+      <Content />
+    </article>
   </main>
+  <Footer />
 </Layout>
+
+<style>
+  .post-page {
+    padding-top: 160px;
+  }
+  .post {
+    max-width: 720px;
+  }
+  .post-header {
+    margin-bottom: 48px;
+  }
+  .post-back {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+  .post-back:hover {
+    color: var(--accent);
+  }
+  .post-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 16px 0 12px;
+  }
+  .post-meta {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .post-description {
+    margin-top: 12px;
+    font-style: italic;
+    color: var(--text-muted);
+  }
+</style>

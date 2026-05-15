@@ -1,0 +1,155 @@
+---
+import portfolio from "@/data/portfolio";
+import SectionLabel from "./SectionLabel.astro";
+
+const d = portfolio;
+---
+
+<section id="skills" class="section">
+  <div class="container">
+    <div class="fade-in section-head">
+      <SectionLabel text="Stack" />
+      <h2 class="section-title">Tecnologias & Skills</h2>
+    </div>
+
+    <div class="skills-grid">
+      {
+        d.skills.map((group, i) => (
+          <div
+            class:list={[
+              "skill-group",
+              "fade-in",
+              { "skill-group--highlight": !!group.highlight },
+            ]}
+            style={`transition-delay: ${i * 60}ms`}
+          >
+            <div class="skill-group__header">
+              {group.highlight && (
+                <span class="skill-group__ai-badge">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                  AI-first
+                </span>
+              )}
+              <h3 class="skill-group__title">{group.category}</h3>
+            </div>
+            <div class="skill-group__tags">
+              {group.items.map((skill) => (
+                <span
+                  class:list={["skill-tag", { "skill-tag--ai": !!group.highlight }]}
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="languages-row fade-in">
+      <span class="languages-label">Idiomas:</span>
+      {d.languages.map((l) => <span class="tag">{l}</span>)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .skill-group {
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    padding: 24px;
+  }
+  .skill-group--highlight {
+    border-color: oklch(0.35 0.08 185 / 0.4);
+    background: oklch(0.11 0.012 200);
+  }
+  .skill-group__header {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .skill-group__title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .skill-group__ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-family: var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border: 1px solid oklch(0.35 0.08 185 / 0.3);
+    border-radius: 100px;
+    padding: 3px 9px;
+    width: fit-content;
+  }
+  .skill-group__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .skill-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-family: var(--mono);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .skill-tag:hover {
+    color: var(--text);
+    border-color: var(--accent-dim);
+  }
+  .skill-tag--ai {
+    background: var(--accent-bg);
+    border-color: oklch(0.35 0.08 185 / 0.3);
+    color: var(--accent);
+  }
+  .languages-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .languages-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 600px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

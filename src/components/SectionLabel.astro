@@ -1,0 +1,9 @@
+---
+type Props = { text: string };
+const { text } = Astro.props;
+---
+
+<div class="section-label">
+  <span class="section-label__line"></span>
+  <span class="section-label__text">{text}</span>
+</div>
